@@ -1,0 +1,42 @@
+<chapter id="timeadjust">
+<chapterinfo>
+
+<title>Time Adjust</title>
+
+<authorgroup>
+    <author>
+        <firstname>Gilles</firstname><surname>Caulier</surname>
+        <affiliation><address><email>caulier dot gilles at gmail dot com</email></address></affiliation>
+    </author>
+</authorgroup>
+
+<abstract>
+<para>
+The Kipi Time Adjust plugin is a tool for adjusting image files timestamp.
+</para>
+</abstract>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>Kipi</keyword>
+</keywordset>
+</chapterinfo>
+
+<title>Introduction</title>
+
+<para>
+The Kipi plugin <quote>Time Adjust</quote> currently has no
+documentation. If you are interested in rectifying that situation,
+please contact Kipi team mailing list <email>kde-imaging@kde.org</email>.
+</para>
+
+</chapter>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-omittag: nil
+sgml-shorttag: t
+End:
+-->
+

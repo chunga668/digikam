@@ -1,0 +1,50 @@
+<chapter id="wallpaper">
+<chapterinfo>
+
+<title>Wall Paper</title>
+
+<authorgroup>
+    <author>
+        <firstname>Gilles</firstname><surname>Caulier</surname>
+        <affiliation><address><email>caulier dot gilles at gmail dot com</email></address></affiliation>
+    </author>
+</authorgroup>
+
+<abstract>
+<para>
+The Kipi wall paper plugin is a tool for push an image in the desktop background.
+</para>
+</abstract>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>Kipi</keyword>
+</keywordset>
+</chapterinfo>
+
+<title>Introduction</title>
+
+<para>
+This plugin place the current selected image in the KDE desktop in according with the menu sub-option selected:
+</para>
+
+<itemizedlist>
+<listitem><para>Centered.</para></listitem>
+<listitem><para>Tiled.</para></listitem>
+<listitem><para>Centered tiled.</para></listitem>
+<listitem><para>Centered max-aspect.</para></listitem>
+<listitem><para>Tiled max-aspect.</para></listitem>
+<listitem><para>Scaled.</para></listitem>
+<listitem><para>Centered auto fit.</para></listitem>
+</itemizedlist>
+
+</chapter>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-omittag: nil
+sgml-shorttag: t
+End:
+-->
+
