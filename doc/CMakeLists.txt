@@ -22,10 +22,6 @@
 #
 # ============================================================
 
-ADD_SUBDIRECTORY(libksane)
-ADD_SUBDIRECTORY(libkipi)
-ADD_SUBDIRECTORY(libkexiv2)
-ADD_SUBDIRECTORY(libkdcraw)
-ADD_SUBDIRECTORY(libkface)
-ADD_SUBDIRECTORY(libkmap)
+ADD_SUBDIRECTORY(digikam/digikam)
+ADD_SUBDIRECTORY(digikam/showfoto)
 ADD_SUBDIRECTORY(kipi-plugins)
