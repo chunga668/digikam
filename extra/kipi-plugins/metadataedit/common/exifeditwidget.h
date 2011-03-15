@@ -56,8 +56,8 @@ public:
     bool isModified();
 
 Q_SIGNALS:
-	void signalSetReadOnly( bool );
-	void signalModified();
+    void signalSetReadOnly( bool );
+    void signalModified();
 
 public Q_SLOTS:
 
@@ -68,7 +68,7 @@ protected Q_SLOTS:
     void slotOk();
 
 private Q_SLOTS:
-	void slotClose();
+    void slotClose();
     void slotItemChanged();
     void slotApply();
     void slotUser1();

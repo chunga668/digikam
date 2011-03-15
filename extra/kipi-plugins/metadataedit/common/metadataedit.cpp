@@ -58,12 +58,6 @@
 
 // Local includes
 
-#include "exifadjust.h"
-#include "exifcaption.h"
-#include "exifdatetime.h"
-#include "exifdevice.h"
-#include "exiflens.h"
-#include "exiflight.h"
 #include "kpaboutdata.h"
 #include "pluginsversion.h"
 #include "exifeditwidget.h"
@@ -79,39 +73,39 @@ namespace KIPIMetadataEditPlugin
 class MetadataEditDialogPrivate
 {
 public:
-	MetadataEditDialogPrivate()
-	{
-		isReadOnly = false;
-		about = 0;
-		tabWidget = 0;
-		tabExif = 0;
-		tabIptc = 0;
-		tabXmp = 0;
-	}
-	
-	bool isReadOnly;
-	
-	KUrl::List                            urls;
+    MetadataEditDialogPrivate()
+    {
+        isReadOnly = false;
+        about = 0;
+        tabWidget = 0;
+        tabExif = 0;
+        tabIptc = 0;
+        tabXmp = 0;
+    }
+    
+    bool isReadOnly;
+    
+    KUrl::List                            urls;
     KUrl::List::iterator                  currItem;
     
     Interface                             *interface;
-	
-	KTabWidget                            *tabWidget;
-	allEXIFEditWidget                     *tabExif;
-	allIPTCEditWidget                     *tabIptc;
-	allXMPEditWidget                      *tabXmp;
-	KPAboutData                           *about;
-	QString                               tabName;
+    
+    KTabWidget                            *tabWidget;
+    allEXIFEditWidget                     *tabExif;
+    allIPTCEditWidget                     *tabIptc;
+    allXMPEditWidget                      *tabXmp;
+    KPAboutData                           *about;
+    QString                               tabName;
 };
 
 MetadataEditDialog::MetadataEditDialog(QWidget *parent,KUrl::List urls,
-		Interface *iface): KDialog(parent),d(new MetadataEditDialogPrivate)
+        Interface *iface): KDialog(parent),d(new MetadataEditDialogPrivate)
 {
-	d->urls      = urls;
+    d->urls      = urls;
     d->interface = iface;
     d->currItem  = d->urls.begin();
     
-	this-> setCaption(tr("Metadata edit dialog"));
+    this-> setCaption(tr("Metadata edit dialog"));
     d->tabWidget = new KTabWidget(this);
     d->tabExif = new allEXIFEditWidget(this, urls, iface);
     d->tabIptc = new allIPTCEditWidget(this, urls, iface);
@@ -133,83 +127,85 @@ MetadataEditDialog::MetadataEditDialog(QWidget *parent,KUrl::List urls,
     //----------------------------------------------------------
     
     connect(d->tabExif,SIGNAL(signalModified()),
-		this,SLOT(slotModified()));
-	
-	connect(d->tabIptc,SIGNAL(signalModified()),
-		this,SLOT(slotModified()));
+        this,SLOT(slotModified()));
+    
+    connect(d->tabIptc,SIGNAL(signalModified()),
+        this,SLOT(slotModified()));
     
     connect(d->tabXmp,SIGNAL(signalModified()),
-		this,SLOT(slotModified()));	
-		
-	connect(this,SIGNAL(applyClicked()),
-		this,SLOT(slotApply()));
-		
-	connect(this,SIGNAL(signalApply()),
-		d->tabExif,SLOT(slotApply()));
-		
-	connect(this,SIGNAL(signalApply()),
-		d->tabIptc,SLOT(slotApply()));
-		
-	connect(this,SIGNAL(signalApply()),
-		d->tabXmp,SLOT(slotApply()));
-		
-	connect(this,SIGNAL(closeClicked()),
-		this,SLOT(slotClose()));
-		
-	connect(this,SIGNAL(signalClose()),
-		d->tabExif,SLOT(slotClose()));
-		
-	connect(this,SIGNAL(signalClose()),
-		d->tabIptc,SLOT(slotClose()));
-	
-	connect(this,SIGNAL(signalClose()),
-		d->tabXmp,SLOT(slotClose()));
-		
-	connect(this,SIGNAL(user1Clicked()),
-		this,SLOT(slotUser1()));
-		
-	connect(this,SIGNAL(signalUser1()),
-		d->tabExif,SLOT(slotUser1()));
-		
-	connect(this,SIGNAL(signalUser1()),
-		d->tabIptc,SLOT(slotUser1()));
-	
-	connect(this,SIGNAL(signalUser1()),
-		d->tabXmp,SLOT(slotUser1()));
-		
-		
-	connect(this,SIGNAL(user2Clicked()),
-		this,SLOT(slotUser2()));
-		
-	connect(this,SIGNAL(signalUser2()),
-		d->tabExif,SLOT(slotUser2()));
-		
-	connect(this,SIGNAL(signalUser2()),
-		d->tabIptc,SLOT(slotUser2()));
-	
-	connect(this,SIGNAL(signalUser2()),
-		d->tabXmp,SLOT(slotUser2()));
-		
-	connect(this,SIGNAL(okClicked()),
-		this,SLOT(slotOk()));
-		
-	connect(this,SIGNAL(signalOk()),
-		d->tabExif,SLOT(slotOk()));
-		
-	connect(this,SIGNAL(signalOk()),
-		d->tabIptc,SLOT(slotOk()));
-	
-	connect(this,SIGNAL(signalOk()),
-		d->tabXmp,SLOT(slotOk()));
-		
-	connect(d->tabExif,SIGNAL(signalSetReadOnly(bool)),
-		this,SLOT(slotSetReadOnly(bool)));
-		
-	connect(d->tabIptc,SIGNAL(signalSetReadOnly(bool)),
-		this,SLOT(slotSetReadOnly(bool)));
-		
-	connect(d->tabXmp,SIGNAL(signalSetReadOnly(bool)),
-		this,SLOT(slotSetReadOnly(bool)));
+        this,SLOT(slotModified()));    
+        
+    connect(this,SIGNAL(applyClicked()),
+        this,SLOT(slotApply()));
+        
+    connect(this,SIGNAL(signalApply()),
+        d->tabExif,SLOT(slotApply()));
+        
+    connect(this,SIGNAL(signalApply()),
+        d->tabIptc,SLOT(slotApply()));
+        
+    connect(this,SIGNAL(signalApply()),
+        d->tabXmp,SLOT(slotApply()));
+        
+    connect(this,SIGNAL(closeClicked()),
+        this,SLOT(slotClose()));
+        
+    connect(this,SIGNAL(signalClose()),
+        d->tabExif,SLOT(slotClose()));
+        
+    connect(this,SIGNAL(signalClose()),
+        d->tabIptc,SLOT(slotClose()));
+    
+    connect(this,SIGNAL(signalClose()),
+        d->tabXmp,SLOT(slotClose()));
+        
+    connect(this,SIGNAL(user1Clicked()),
+        this,SLOT(slotUser1()));
+        
+    connect(this,SIGNAL(signalUser1()),
+        d->tabExif,SLOT(slotUser1()));
+        
+    connect(this,SIGNAL(signalUser1()),
+        d->tabIptc,SLOT(slotUser1()));
+    
+    connect(this,SIGNAL(signalUser1()),
+        d->tabXmp,SLOT(slotUser1()));
+        
+    connect(this,SIGNAL(user2Clicked()),
+        this,SLOT(slotUser2()));
+        
+    connect(this,SIGNAL(signalUser2()),
+        d->tabExif,SLOT(slotUser2()));
+        
+    connect(this,SIGNAL(signalUser2()),
+        d->tabIptc,SLOT(slotUser2()));
+    
+    connect(this,SIGNAL(signalUser2()),
+        d->tabXmp,SLOT(slotUser2()));
+        
+    connect(this,SIGNAL(okClicked()),
+        this,SLOT(slotOk()));
+        
+    connect(this,SIGNAL(signalOk()),
+        d->tabExif,SLOT(slotOk()));
+        
+    connect(this,SIGNAL(signalOk()),
+        d->tabIptc,SLOT(slotOk()));
+    
+    connect(this,SIGNAL(signalOk()),
+        d->tabXmp,SLOT(slotOk()));
+        
+    connect(d->tabExif,SIGNAL(signalSetReadOnly(bool)),
+        this,SLOT(slotSetReadOnly(bool)));
+        
+    connect(d->tabIptc,SIGNAL(signalSetReadOnly(bool)),
+        this,SLOT(slotSetReadOnly(bool)));
+        
+    connect(d->tabXmp,SIGNAL(signalSetReadOnly(bool)),
+        this,SLOT(slotSetReadOnly(bool)));
+        
+    connect(d->tabWidget,SIGNAL(currentChanged(int)),
+        this,SLOT(setWindowTitle(int)));
     
     //----------------------------------------------------------
     
@@ -242,8 +238,8 @@ MetadataEditDialog::MetadataEditDialog(QWidget *parent,KUrl::List urls,
 
 MetadataEditDialog::~MetadataEditDialog()
 {
-	delete d->about;
-	delete d;
+    delete d->about;
+    delete d;
 };
 
 void MetadataEditDialog::slotHelp()
@@ -253,101 +249,81 @@ void MetadataEditDialog::slotHelp()
 
 void MetadataEditDialog::slotClose()
 {
-	emit signalClose();
-	saveSettings();
-	close();
+    emit signalClose();
+    saveSettings();
+    close();
 }
 
 void MetadataEditDialog::slotModified()
 {
-	bool modified=false;
-	
-	switch (d->tabWidget->currentIndex()) {
-	
-		case 0:
-			modified = d->tabExif->isModified();
-			break;
-	
-		case 1:
-			modified = d->tabIptc->isModified();
-			break;
-	
-		case 2:
-			modified = d->tabXmp->isModified();
-			break;
-		}
-	
-	enableButton(Apply,modified);	
+    bool modified=false;
+    
+    switch (d->tabWidget->currentIndex()) {
+    
+        case 0:
+            modified = d->tabExif->isModified();
+            break;
+    
+        case 1:
+            modified = d->tabIptc->isModified();
+            break;
+    
+        case 2:
+            modified = d->tabXmp->isModified();
+            break;
+        }
+    
+    enableButton(Apply,modified);    
 }
 
 void MetadataEditDialog::slotApply()
 {
-	emit signalApply();
-	slotItemChanged();
+    emit signalApply();
+    slotItemChanged();
 }
 
 void MetadataEditDialog::readSettings()
 {
-	KConfig config("kipirc");
+    KConfig config("kipirc");
     KConfigGroup group = config.group(QString("Metadata Edit Dialog"));
     restoreDialogSize(group);
 }
 
 void MetadataEditDialog::saveSettings()
 {
-	KConfig config("kipirc");
-	KConfigGroup group = config.group(QString("Metadata Edit Dialog"));
+    KConfig config("kipirc");
+    KConfigGroup group = config.group(QString("Metadata Edit Dialog"));
     saveDialogSize(group);
 }
 
 void MetadataEditDialog::slotUser1()
 {
-	slotApply();
-	d->currItem++;
-	emit signalUser1();
-	slotItemChanged();
+    slotApply();
+    d->currItem++;
+    emit signalUser1();
+    slotItemChanged();
 }
 
 void MetadataEditDialog::slotUser2()
 {
-	slotApply();
-	d->currItem--;
-	emit signalUser2();
-	slotItemChanged();
+    slotApply();
+    d->currItem--;
+    emit signalUser2();
+    slotItemChanged();
 }
 
 void MetadataEditDialog::slotItemChanged()
 {
-	enableButton(Apply, !d->isReadOnly);
-	
-	switch (d->tabWidget->currentIndex()) {
-		
-		case 0:
-			d->tabName = "EXIF";
-			break;
-		case 1:
-			d->tabName = "IPTC";
-			break;
-		case 2:
-			d->tabName = "XMP";
-			break;
-	}
-	
-	setCaption(QString("%1 (%2/%3) - %4 %5 %6 ")
-		.arg((*d->currItem).fileName())
-		.arg(d->urls.indexOf(*(d->currItem))+1)
-		.arg(d->urls.count())
-		.arg(i18n("Edit"))
-		.arg(d->tabName)
-		.arg(i18n("Metadata")));
-	enableButton(User1, *(d->currItem) != d->urls.last());
+    enableButton(Apply, !d->isReadOnly);
+    setWindowTitle(d->tabWidget->currentIndex());
+    enableButton(User1, *(d->currItem) != d->urls.last());
     enableButton(User2, *(d->currItem) != d->urls.first());
-	enableButton(Apply, false);
+    enableButton(Apply, false);
 }
 
 void MetadataEditDialog::slotOk()
 {
-	slotApply();
+    slotApply();
     saveSettings();
     emit signalOk();
     accept();
@@ -395,7 +371,33 @@ void MetadataEditDialog::closeEvent(QCloseEvent *e)
 
 void MetadataEditDialog::slotSetReadOnly(bool state)
 {
-	d->isReadOnly = state;
+    d->isReadOnly = state;
+}
+
+void MetadataEditDialog::setWindowTitle(int tabIndex)
+{
+    switch (tabIndex) { 
+       
+        case 0:
+            d->tabName = "EXIF";
+            break;
+        
+        case 1:
+            d->tabName = "IPTC";
+            break;
+        
+        case 2:
+            d->tabName = "XMP";
+            break;
+    }
+    
+    setCaption(QString("%1 (%2/%3) - %4 %5 %6 ")
+        .arg((*d->currItem).fileName())
+        .arg(d->urls.indexOf(*(d->currItem))+1)
+        .arg(d->urls.count())
+        .arg(i18n("Edit"))
+        .arg(d->tabName)
+        .arg(i18n("Metadata")));
 }
 
 }

@@ -56,8 +56,8 @@ public:
     bool isModified();
 
 Q_SIGNALS:
-	void signalModified();
-	void signalSetReadOnly( bool );
+    void signalModified();
+    void signalSetReadOnly( bool );
 
 public Q_SLOTS:
 

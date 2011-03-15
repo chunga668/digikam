@@ -232,8 +232,6 @@ allIPTCEditWidget::allIPTCEditWidget(QWidget* parent, KUrl::List urls, Interface
 
     // ------------------------------------------------------------
 
-    // ------------------------------------------------------------
-
     readSettings();
     slotItemChanged();
 }
@@ -355,7 +353,6 @@ void allIPTCEditWidget::slotUser1()
 {
     slotApply();
     d->currItem++;
-    kDebug() << *(d->currItem);
     slotItemChanged();
 }
 
@@ -363,7 +360,6 @@ void allIPTCEditWidget::slotUser2()
 {
     slotApply();
     d->currItem--;
-    kDebug() << *(d->currItem);
     slotItemChanged();
 }
 
@@ -372,7 +368,7 @@ void allIPTCEditWidget::slotModified()
     if (!d->isReadOnly)
     {
         d->modified = true;
-		emit signalModified();
+        emit signalModified();
     }
 }
 
@@ -438,7 +434,7 @@ int allIPTCEditWidget::activePageIndex()
 
 bool allIPTCEditWidget::isModified()
 {
-	return d->modified;
+    return d->modified;
 }
 
 }  // namespace KIPIMetadataEditPlugin

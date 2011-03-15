@@ -33,7 +33,7 @@ class Event;
 
 namespace KIPI
 {
-	class Interface;
+    class Interface;
 }
 
 using namespace KIPI;
@@ -45,50 +45,51 @@ class MetadataEditDialogPrivate;
 
 class MetadataEditDialog : public KDialog
 {
-	Q_OBJECT
-		
+    Q_OBJECT
+        
 public:
-	MetadataEditDialog(QWidget *parent,KUrl::List urls,Interface *iface);
-	~MetadataEditDialog();
-		
+    MetadataEditDialog(QWidget *parent,KUrl::List urls,Interface *iface);
+    ~MetadataEditDialog();
+        
 public Q_SLOTS:
 
-	void slotModified();
+    void slotModified();
 
 private Q_SLOTS:
 
-	void slotHelp();
-	void slotOk();
-	void slotClose();
-	void slotItemChanged();
-	void slotApply();
-	void slotUser1();
-	void slotUser2();
-	void slotSetReadOnly(bool);
-	
+    void slotHelp();
+    void slotOk();
+    void slotClose();
+    void slotItemChanged();
+    void slotApply();
+    void slotUser1();
+    void slotUser2();
+    void slotSetReadOnly(bool);
+    void setWindowTitle(int);
+    
 Q_SIGNALS:
 
-	void signalApply();
-	void signalClose();
-	void signalUser1();
-	void signalUser2();	
-	void signalOk();
-	
+    void signalApply();
+    void signalClose();
+    void signalUser1();
+    void signalUser2();    
+    void signalOk();
+    
 protected:
 
-	void closeEvent(QCloseEvent*);
+    void closeEvent(QCloseEvent*);
     bool eventFilter(QObject*, QEvent*);
-		
+        
 private:
 
-	void saveSettings();
-	void readSettings();
+    void saveSettings();
+    void readSettings();
 
 private:
 
-	MetadataEditDialogPrivate* const d;
+    MetadataEditDialogPrivate* const d;
 };
 
 }  // namespace KIPIMetadataEditPlugin
 
-#endif  // EDITALLMETADATA_H
+#endif  /* EDITALLMETADATA_H */

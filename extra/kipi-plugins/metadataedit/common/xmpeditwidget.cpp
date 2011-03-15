@@ -288,7 +288,7 @@ void allXMPEditWidget::slotItemChanged()
     d->statusPage->readMetadata(d->xmpData);
     d->propertiesPage->readMetadata(d->xmpData);
     d->isReadOnly = !KExiv2::canWriteXmp((*d->currItem).path());
-	emit signalSetReadOnly(d->isReadOnly);
+    emit signalSetReadOnly(d->isReadOnly);
 
     d->page_content->setEnabled(!d->isReadOnly);
     d->page_origin->setEnabled(!d->isReadOnly);
@@ -346,7 +346,6 @@ void allXMPEditWidget::slotUser1()
 {
     slotApply();
     d->currItem++;
-    kDebug() << *(d->currItem);
     slotItemChanged();
 }
 
@@ -354,7 +353,6 @@ void allXMPEditWidget::slotUser2()
 {
     slotApply();
     d->currItem--;
-    kDebug() << *(d->currItem);
     slotItemChanged();
 }
 
@@ -363,7 +361,7 @@ void allXMPEditWidget::slotModified()
     if (!d->isReadOnly)
     {
         d->modified = true;
-		emit signalModified();
+        emit signalModified();
     }
 }
 
@@ -425,7 +423,7 @@ int allXMPEditWidget::activePageIndex()
 
 bool allXMPEditWidget::isModified()
 {
-	return d->modified;
+    return d->modified;
 }
 
 }  // namespace KIPIMetadataEditPlugin

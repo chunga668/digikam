@@ -308,7 +308,6 @@ void allEXIFEditWidget::slotUser1()
 {
     slotApply();
     d->currItem++;
-    kDebug() << *(d->currItem);
     slotItemChanged();
 }
 
@@ -316,7 +315,6 @@ void allEXIFEditWidget::slotUser2()
 {
     slotApply();
     d->currItem--;
-    kDebug() << *(d->currItem);
     slotItemChanged();
 }
 
@@ -325,7 +323,7 @@ void allEXIFEditWidget::slotModified()
     if (!d->isReadOnly)
     {
         d->modified = true;
-		emit signalModified();
+        emit signalModified();
     }
 }
 
@@ -379,7 +377,7 @@ int allEXIFEditWidget::activePageIndex()
 
 bool allEXIFEditWidget::isModified()
 {
-	return d->modified;
+    return d->modified;
 }
 
 }  // namespace KIPIMetadataEditPlugin
