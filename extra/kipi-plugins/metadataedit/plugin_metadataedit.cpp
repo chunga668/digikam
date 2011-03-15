@@ -161,14 +161,14 @@ void Plugin_MetadataEdit::setup(QWidget* widget)
             this, SLOT(slotRemoveComments()));
     m_actionMetadataEdit->addAction(removeComments);
 
-	// ------------------------------------------------------
-	m_actionMetadataEdit->menu()->addSeparator();
+    // ------------------------------------------------------
+    m_actionMetadataEdit->menu()->addSeparator();
 
-	KAction* metadataEdit = actionCollection()->addAction("editallmetadata");
-	metadataEdit->setText(i18n("Edit &All Metadata"));
-	connect(metadataEdit, SIGNAL(triggered(bool)),
-			this,SLOT(slotEditAllMetadata()));
-	m_actionMetadataEdit->addAction(metadataEdit);
+    KAction* metadataEdit = actionCollection()->addAction("editallmetadata");
+    metadataEdit->setText(i18n("Edit &All Metadata"));
+    connect(metadataEdit, SIGNAL(triggered(bool)),
+            this,SLOT(slotEditAllMetadata()));
+    m_actionMetadataEdit->addAction(metadataEdit);
 
     addAction( m_actionMetadataEdit );
 
@@ -188,17 +188,16 @@ void Plugin_MetadataEdit::setup(QWidget* widget)
 
 void Plugin_MetadataEdit::slotEditAllMetadata()
 {
-	ImageCollection images = m_interface->currentSelection();
+    ImageCollection images = m_interface->currentSelection();
 
-	if ( !images.isValid() || images.images().isEmpty() )
-		return;
+    if ( !images.isValid() || images.images().isEmpty() )
+        return;
 
-	QPointer<MetadataEditDialog> dialog = new MetadataEditDialog(kapp->activeWindow(), images.images(), m_interface);
-	//QPointer<EXIFEditDialog> dialog = new EXIFEditDialog(kapp->activeWindow(), images.images(), m_interface);
-	dialog->exec();
-	m_interface->refreshImages(images.images());
+    QPointer<MetadataEditDialog> dialog = new MetadataEditDialog(kapp->activeWindow(), images.images(), m_interface);
+    dialog->exec();
+    m_interface->refreshImages(images.images());
 
-	delete dialog;
+    delete dialog;
 }
 
 void Plugin_MetadataEdit::slotEditExif()

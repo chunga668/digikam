@@ -72,7 +72,7 @@ protected Q_SLOTS:
     void slotEditComments();
     void slotRemoveComments();
 
-	void slotEditAllMetadata();
+    void slotEditAllMetadata();
 
 private:
 

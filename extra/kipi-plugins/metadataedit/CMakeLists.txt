@@ -13,10 +13,10 @@ SET(kipiplugin_metadataedit_PART_SRCS plugin_metadataedit.cpp
                                       common/multistringsedit.cpp
                                       common/multivaluesedit.cpp
                                       common/objectattributesedit.cpp
-									  common/exifeditwidget.cpp
-									  common/iptceditwidget.cpp
-									  common/xmpeditwidget.cpp
-									  common/metadataedit.cpp
+                                      common/exifeditwidget.cpp
+                                      common/iptceditwidget.cpp
+                                      common/xmpeditwidget.cpp
+                                      common/metadataedit.cpp
                                       exif/exifcaption.cpp
                                       exif/exifdatetime.cpp
                                       exif/exifadjust.cpp
