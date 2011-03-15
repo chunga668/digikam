@@ -59,6 +59,7 @@
 #include "exifeditdialog.h"
 #include "iptceditdialog.h"
 #include "xmpeditdialog.h"
+#include "metadataedit.h"
 
 using namespace KExiv2Iface;
 using namespace KIPIMetadataEditPlugin;
@@ -160,6 +161,15 @@ void Plugin_MetadataEdit::setup(QWidget* widget)
             this, SLOT(slotRemoveComments()));
     m_actionMetadataEdit->addAction(removeComments);
 
+	// ------------------------------------------------------
+	m_actionMetadataEdit->menu()->addSeparator();
+
+	KAction* metadataEdit = actionCollection()->addAction("editallmetadata");
+	metadataEdit->setText(i18n("Edit &All Metadata"));
+	connect(metadataEdit, SIGNAL(triggered(bool)),
+			this,SLOT(slotEditAllMetadata()));
+	m_actionMetadataEdit->addAction(metadataEdit);
+
     addAction( m_actionMetadataEdit );
 
     m_interface = dynamic_cast<Interface*>( parent() );
@@ -174,6 +184,21 @@ void Plugin_MetadataEdit::setup(QWidget* widget)
 
     connect(m_interface, SIGNAL(selectionChanged(bool)),
             m_actionMetadataEdit, SLOT(setEnabled(bool)));
+}
+
+void Plugin_MetadataEdit::slotEditAllMetadata()
+{
+	ImageCollection images = m_interface->currentSelection();
+
+	if ( !images.isValid() || images.images().isEmpty() )
+		return;
+
+	QPointer<MetadataEditDialog> dialog = new MetadataEditDialog(kapp->activeWindow(), images.images(), m_interface);
+	//QPointer<EXIFEditDialog> dialog = new EXIFEditDialog(kapp->activeWindow(), images.images(), m_interface);
+	dialog->exec();
+	m_interface->refreshImages(images.images());
+
+	delete dialog;
 }
 
 void Plugin_MetadataEdit::slotEditExif()

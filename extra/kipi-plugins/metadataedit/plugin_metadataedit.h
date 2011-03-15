@@ -72,6 +72,8 @@ protected Q_SLOTS:
     void slotEditComments();
     void slotRemoveComments();
 
+	void slotEditAllMetadata();
+
 private:
 
     KActionMenu* m_actionMetadataEdit;
