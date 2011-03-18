@@ -22,6 +22,8 @@
  * ============================================================ */
 
 #include "batchdialog.moc"
+#include <dngimglist.h>
+
 
 // Qt includes
 
@@ -68,14 +70,14 @@
 #include "pluginsversion.h"
 #include "settingswidget.h"
 
+
 using namespace DNGIface;
 using namespace KIPIPlugins;
 
 namespace KIPIDNGConverterPlugin
 {
 
-class BatchDialog::BatchDialogPriv
-{
+class BatchDialog::BatchDialogPriv{
 public:
 
     BatchDialogPriv()
@@ -115,6 +117,8 @@ public:
     KIPI::Interface*       iface;
 
     DNGConverterAboutData* about;
+    
+    ImagesList*				d_imgList;
 };
 
 BatchDialog::BatchDialog(KIPI::Interface* iface, DNGConverterAboutData* about)
@@ -124,18 +128,20 @@ BatchDialog::BatchDialog(KIPI::Interface* iface, DNGConverterAboutData* about)
     d->about = about;
 
     setWindowIcon(KIcon("dngconverter"));
-    setButtons(Help | Default | Apply | Close | User1 | User2);
+    setButtons(Help | Default | Apply | Close /*| User1 | User2 */);
     setDefaultButton(KDialog::Close);
     setButtonToolTip(Close, i18n("Exit DNG Converter"));
     setCaption(i18n("Batch convert RAW camera images to DNG"));
     setModal(false);
+    //********SlaviQ-remove buttons
+    /*
     setButtonIcon(User1, KIcon("list-add"));
     setButtonText(User1, i18n("&Add"));
     setButtonToolTip(User1, i18n("Add new Raw files to the list"));
     setButtonIcon(User2, KIcon("list-remove"));
-    setButtonText(User2, i18n("&Remove"));
+	setButtonText(User2, i18n("&Remove"));
     setButtonToolTip(User2, i18n("Remove selected Raw files from the list"));
-
+	*/
     d->page = new QWidget( this );
     setMainWidget( d->page );
     QGridLayout *mainLayout = new QGridLayout(d->page);
@@ -143,6 +149,13 @@ BatchDialog::BatchDialog(KIPI::Interface* iface, DNGConverterAboutData* about)
     //---------------------------------------------
 
     d->listView = new QTreeWidget(d->page);
+    //*************************SlaviQ***************************************
+    d->d_imgList= new DNGImagesList(iface, this); 
+    d->d_imgList->setControlButtonsPlacement(ImagesList::ControlButtonsBelow); 
+    d->d_imgList->setAllowRAW(true);
+    d->d_imgList->loadImagesFromCurrentSelection();
+    d->d_imgList->listView()->setWhatsThis(i18n("This is a list of images that will be processed by DNG Converter"));
+    /*
     d->listView->setColumnCount(3);
     d->listView->setIconSize(QSize(64, 64));
     d->listView->setRootIsDecorated(false);
@@ -151,7 +164,7 @@ BatchDialog::BatchDialog(KIPI::Interface* iface, DNGConverterAboutData* about)
     d->listView->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     d->listView->setAllColumnsShowFocus(true);
     d->listView->setMinimumWidth(450);
-
+	
     QStringList labels;
     labels.append( i18n("Thumbnail") );
     labels.append( i18n("Raw File") );
@@ -162,18 +175,23 @@ BatchDialog::BatchDialog(KIPI::Interface* iface, DNGConverterAboutData* about)
     d->listView->header()->setResizeMode(1, QHeaderView::Stretch);
     d->listView->header()->setResizeMode(2, QHeaderView::Stretch);
     d->listView->header()->setResizeMode(3, QHeaderView::Stretch);
-
+	*/
     // ---------------------------------------------------------------
 
-    d->settingsBox = new SettingsWidget(d->page);
-
+    d->settingsBox = new SettingsWidget(d->page); 
+	
     d->progressBar = new QProgressBar(d->page);
     d->progressBar->setMaximumHeight( fontMetrics().height()+2 );
     d->progressBar->hide();
 
-    mainLayout->addWidget(d->listView,    0, 0, 3, 1);
+    //mainLayout->addWidget(d->listView,0, 0, 3, 1);
+	mainLayout->addWidget(d->d_imgList,0 ,0, 3, 1);
     mainLayout->addWidget(d->settingsBox, 0, 1, 1, 1);
-    mainLayout->addWidget(d->progressBar, 1, 1, 1, 1);
+	//mainLayout->addWidget(m_headerLbl, 0, 1, 1, 1);
+
+	mainLayout->addWidget(d->progressBar, 1, 1, 1, 1);
+	//mainLayout->addWidget(m_progressBar, 1, 1, 1, 1);
+	
     mainLayout->setColumnStretch(0, 10);
     mainLayout->setRowStretch(2, 10);
     mainLayout->setMargin(0);
@@ -209,11 +227,14 @@ BatchDialog::BatchDialog(KIPI::Interface* iface, DNGConverterAboutData* about)
     connect(this, SIGNAL(defaultClicked()),
             this, SLOT(slotDefault()));
 
+    //connect(this, SIGNAL(applyClicked()),
+    //        this, SLOT(d_imgList::slotAddImages());
     connect(this, SIGNAL(applyClicked()),
             this, SLOT(slotStartStop()));
 
     connect(this, SIGNAL(user1Clicked()),
             this, SLOT(slotAddItems()));
+            
 
     connect(this, SIGNAL(user2Clicked()),
             this, SLOT(slotRemoveItems()));
@@ -263,7 +284,7 @@ void BatchDialog::slotClose()
     // Stop current conversion if necessary
     if (d->busy) slotStartStop();
     saveSettings();
-    d->listView->clear();
+  //  d->listView->clear();
     done(Close);
 }
 
@@ -312,6 +333,7 @@ void BatchDialog::slotStartStop()
         d->fileList.clear();
 
         QTreeWidgetItemIterator it(d->listView);
+        //QTreeWidgetItemIterator it(d->d_imgList);
         while (*it)
         {
             CListViewItem* lvItem = dynamic_cast<CListViewItem*>(*it);
