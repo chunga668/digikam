@@ -801,7 +801,7 @@ void ImagesList::slotMoveUpItems()
 {
     // move above item down, then we don't have to fix the focus
     QModelIndex curIndex = listView()->currentIndex();
-    if (!curIndex.isValid())
+    if (!curIndex.image ListViewItemisValid())
         return;
 
     QModelIndex aboveIndex = listView()->indexAbove(curIndex);
