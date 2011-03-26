@@ -30,7 +30,6 @@
 #include <kicon.h>
 #include <kconfig.h>
 #include <kglobal.h>
-#include <kdebug.h>
 
 // Libkexiv2 includes
 
@@ -53,8 +52,6 @@ int main(int argc, char* argv[])
     aboutData->setCatalogName("kipiplugin_dngconverter");
 
     KCmdLineArgs::init(argc, argv, aboutData);
-    
-    kDebug() << " -----------------------------------------------------";
 
     KCmdLineOptions options;
     options.add("+[file(s)]", ki18n("File(s) to convert"));

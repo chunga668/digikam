@@ -52,7 +52,7 @@ K_EXPORT_PLUGIN ( RawConverterFactory("kipiplugin_dngconverter") )
 Plugin_DNGConverter::Plugin_DNGConverter(QObject* parent, const QVariantList&)
                    : KIPI::Plugin( RawConverterFactory::componentData(), parent, "DNGConverter")
 {
-    kDebug(AREA_CODE_LOADING) << "-----------------------------------Plugin_DNGConverter plugin loaded------------------------------" ;
+    kDebug(AREA_CODE_LOADING) << "Plugin_DNGConverter plugin loaded" ;
 }
 
 void Plugin_DNGConverter::setup( QWidget* widget )
@@ -120,11 +120,9 @@ void Plugin_DNGConverter::slotActivate()
 
         KWindowSystem::activateWindow(m_batchDlg->winId());
     }
-    
-    m_batchDlg->reactivate();
 
     m_batchDlg->show();
-    //m_batchDlg->addItems(items);
+    m_batchDlg->addItems(items);
 }
 
 KIPI::Category Plugin_DNGConverter::category( KAction* action ) const

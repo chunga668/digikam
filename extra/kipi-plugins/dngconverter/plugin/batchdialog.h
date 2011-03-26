@@ -53,7 +53,6 @@ public:
     ~BatchDialog();
 
     void addItems(const KUrl::List& itemList);
-	void reactivate();
 
 protected:
 
