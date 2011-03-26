@@ -57,15 +57,15 @@ public:
 
 protected Q_SLOTS:
 
-    void slotEditExif();
+    //void slotEditExif();
     void slotRemoveExif();
     void slotImportExif();
 
-    void slotEditIptc();
+    //void slotEditIptc();
     void slotRemoveIptc();
     void slotImportIptc();
 
-    void slotEditXmp();
+    //void slotEditXmp();
     void slotRemoveXmp();
     void slotImportXmp();
 
