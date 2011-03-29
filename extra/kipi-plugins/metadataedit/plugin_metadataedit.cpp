@@ -7,6 +7,7 @@
  * Description : a plugin to edit pictures metadata
  *
  * Copyright (C) 2006-2010 by Gilles Caulier <caulier dot gilles at gmail dot com>
+ * Copyright (C) 2011 by Victor Dodon <dodonvictor at gmail dot com>
  *
  * This program is free software; you can redistribute it
  * and/or modify it under the terms of the GNU General
@@ -82,12 +83,12 @@ void Plugin_MetadataEdit::setup(QWidget* widget)
 
 
     KAction* metadataEdit = actionCollection()->addAction("editallmetadata");
-    metadataEdit->setText(i18n("Edit &All Metadata"));
+    metadataEdit->setText(i18n("Edit &All Metadata..."));
     connect(metadataEdit, SIGNAL(triggered(bool)),
             this,SLOT(slotEditAllMetadata()));
     m_actionMetadataEdit->addAction(metadataEdit);
 
-	// ---------------------------------------------------
+    // ---------------------------------------------------
 
     m_actionMetadataEdit->menu()->addSeparator();
     

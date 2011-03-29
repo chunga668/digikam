@@ -13,16 +13,15 @@ SET(kipiplugin_metadataedit_PART_SRCS plugin_metadataedit.cpp
                                       common/multistringsedit.cpp
                                       common/multivaluesedit.cpp
                                       common/objectattributesedit.cpp
-                                      common/exifeditwidget.cpp
-                                      common/iptceditwidget.cpp
-                                      common/xmpeditwidget.cpp
                                       common/metadataedit.cpp
+                                      exif/exifeditwidget.cpp
                                       exif/exifcaption.cpp
                                       exif/exifdatetime.cpp
                                       exif/exifadjust.cpp
                                       exif/exiflens.cpp
                                       exif/exifdevice.cpp
                                       exif/exiflight.cpp
+                                      iptc/iptceditwidget.cpp
                                       iptc/iptccontent.cpp
                                       iptc/iptcsubjects.cpp
                                       iptc/iptckeywords.cpp
@@ -32,6 +31,7 @@ SET(kipiplugin_metadataedit_PART_SRCS plugin_metadataedit.cpp
                                       iptc/iptcstatus.cpp
                                       iptc/iptcorigin.cpp
                                       iptc/iptcenvelope.cpp
+                                      xmp/xmpeditwidget.cpp
                                       xmp/xmpcontent.cpp
                                       xmp/xmpkeywords.cpp
                                       xmp/xmpcategories.cpp

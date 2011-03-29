@@ -6,7 +6,7 @@
  * Date        : 2011-03-14
  * Description : a dialog to edit EXIF,IPTC and XMP metadata
  *
- * Copyright (C) 2011 by Dodon Victor <dodonvictor at gmail dot com>
+ * Copyright (C) 2011 by Victor Dodon <dodonvictor at gmail dot com>
  *
  * This program is free software; you can redistribute it
  * and/or modify it under the terms of the GNU General
@@ -400,4 +400,4 @@ void MetadataEditDialog::setWindowTitle(int tabIndex)
         .arg(i18n("Metadata")));
 }
 
-}
+}  // namespace KIPIMetadataEditPlugin
